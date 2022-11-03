@@ -1,0 +1,745 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_46F0E238-3A53-44DB-8077-BFD662C4AD05" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_9EF3394B-0CEC-4FC5-B3AE-19634E026316" name="CalcPrice" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_46F0E238-3A53-44DB-8077-BFD662C4AD05">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_0D3B5A69-98A8-485E-8510-3780B86A600F" name="Insert a name" isCollection="false">
+    <dmn:typeRef>Any</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_BE49F840-72C4-405B-9CCF-9C5DE5C6401E" name="ComputerRequest" isCollection="false">
+    <dmn:itemComponent id="_0EDA72AC-808E-4879-A865-9225823C2E4F" name="hardware" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_78E951D2-7A73-47FE-89B6-CB6B2C834127" name="ram" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_9A785088-03D4-4951-9D39-7EE068780D28" name="operatingSystem" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_D620C40B-2E39-4BC2-95D8-644A3D20254C" name="type" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_E8131C3D-A26C-4422-9018-1EC045961394" name="cpu" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_2C3505A7-BA61-4A41-A230-FF4FCE744E76" name="price" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_143B334B-D18D-4810-B6A6-9F5ECC54F3E3" name="screensize" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_0ECEA4B1-1A55-46E6-A555-283A6F36537F" name="CPUType" isCollection="false">
+    <dmn:itemComponent id="_FAE649D9-AC81-41AE-A802-809CC5CC918F" name="CPU Desc" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_1C8E8E6A-0BC0-4182-802B-D373A243BDD0" name="Price" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_70F25EB5-C5EF-40D3-92F3-C7B873B2D0A5" name="HardwarePrice" isCollection="false">
+    <dmn:typeRef>number</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_A7F30B22-8855-40A3-B345-44959CAD80C0" name="OSPrice" isCollection="false">
+    <dmn:typeRef>number</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_8323A90A-8D14-4B44-A14E-38829D0DB0B1" name="RamPrice" isCollection="false">
+    <dmn:typeRef>number</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_5A520A1E-AFC8-41E4-9502-2B0A64BBFF4B" name="ScreenPrice" isCollection="false">
+    <dmn:typeRef>number</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:decision id="_7FB2A1D5-3302-4208-B41F-5D5FD77E8B17" name="Hardware Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_4C6478D0-77DE-47A5-B42C-D2627AEB53DF" name="Hardware Price" typeRef="HardwarePrice"/>
+    <dmn:informationRequirement id="_804E6D62-B5E8-416D-B6F6-2266E61C0D03">
+      <dmn:requiredInput href="#_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_E285B95A-FDD3-4A9B-A57B-0F723CED48D4" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_4BCE307C-5159-400D-B840-7E45F8020413">
+        <dmn:inputExpression id="_4B1326BC-7A73-48E3-AA78-F60D9F4012B8" typeRef="string">
+          <dmn:text>computerRequest.hardware</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_80B3EA35-C214-44AC-9A36-355311B15B0F"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_5F03CC4C-4E7F-4B44-88A4-D9C0DC381CF7">
+        <dmn:inputEntry id="_D983A80B-6FD9-417B-BEBD-50405D7DE706">
+          <dmn:text>"Dell"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_18420D51-41AD-4FBA-B6BF-DF553FE010A1">
+          <dmn:text>350.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_0DD698F3-090F-441D-A0C7-42E74034BD8B">
+        <dmn:inputEntry id="_75038B63-86B4-4F4B-9F99-7A169FCA7449">
+          <dmn:text>"Lenevo"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_67493429-546A-4B13-A3F8-042ADD0811BD">
+          <dmn:text>350.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FF9E7E21-703E-463C-8756-E049FC578665">
+        <dmn:inputEntry id="_993618CF-D95E-4454-83B2-80DD9827CFAA">
+          <dmn:text>"HP"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_4D195092-0837-435C-BBC1-9361B66D08A9">
+          <dmn:text>450.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_12B1C89F-3A01-4315-AF46-7520AC0E6B1E">
+        <dmn:inputEntry id="_D13C28AE-A4D8-414E-A76E-6C017F371342">
+          <dmn:text>"Apple"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_BAF0F753-0139-462D-8AFB-B9FF3388FF7A">
+          <dmn:text>1000.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_0466101F-8A09-46F7-8A29-259B3576B9AE" name="Screen Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_AAB3AAA9-EB5D-4B22-A2C8-D0662DA162F8" name="Screen Price" typeRef="number"/>
+    <dmn:informationRequirement id="_66470449-AC34-4E2E-BF52-449F79109D0D">
+      <dmn:requiredInput href="#_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_DE416A21-3712-481A-8185-A44C2FBDC0C8" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_E32B82E1-BC14-4A32-875A-DD5611103EFE">
+        <dmn:inputExpression id="_F04AEE78-128D-436C-B29B-EACA2FF1D8B5" typeRef="string">
+          <dmn:text>computerRequest.hardware</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_260CA808-95C0-4E6A-B6D2-331E1A959508">
+        <dmn:inputExpression id="_22241ED1-B0A8-4A2A-A6E4-A2B83FC0DF81" typeRef="string">
+          <dmn:text>computerRequest.screensize</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_24B502D4-8E78-43C0-A986-6E9D781216BF"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_3DF4E4DC-AF48-4C4C-A48B-1EEC4D8FC916">
+        <dmn:inputEntry id="_0BB79AB7-AEAD-4C5B-8B3D-0B5417F81BC2">
+          <dmn:text>"Apple"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_8330FBE3-2903-4F6A-929F-0684574C702C">
+          <dmn:text>"14 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_043D9FD6-47C1-45B3-90B4-0C580E81F969">
+          <dmn:text>200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_D50C9C53-BF66-4E60-A5D0-C04A2E977EC2">
+        <dmn:inputEntry id="_DE6A835E-3EF5-4FED-91BB-F71ADF46FB6D">
+          <dmn:text>"Apple"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_811C5C65-E28F-4B3D-A97B-35C72E5E3CEF">
+          <dmn:text>"15 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_83EF8601-3BA3-4BB9-BC22-7195EDE1066A">
+          <dmn:text>250.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_E047CBD3-E359-4342-A318-1A834A7BA359">
+        <dmn:inputEntry id="_165DC80F-2C71-4328-882B-27C5D09A8D74">
+          <dmn:text>"Apple"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5121D4D8-813F-4DF9-97BC-7A9202EF6D64">
+          <dmn:text>"17 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F0E46AB8-D25E-402E-91C7-4FE9583C686E">
+          <dmn:text>350.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_B3177D5B-6F66-4EB7-8C6A-7792DC11854B">
+        <dmn:inputEntry id="_38812D7A-EB59-48AB-BF3F-E622E67D21D8">
+          <dmn:text>"Dell"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_CFDBFE0C-3022-49A6-8933-8DA3B25655A4">
+          <dmn:text>"14 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_AB4AB4BC-5CA0-4DC2-A9C7-1CA8BF31A239">
+          <dmn:text>150.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7418BDC5-CE66-4756-A23B-F7742A8A1E57">
+        <dmn:inputEntry id="_CE2C4E73-4684-4903-98E2-6DF714D87571">
+          <dmn:text>"HP"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_14D6393F-DB07-4861-AE80-794FB0A318DF">
+          <dmn:text>"14 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_08871DDA-2347-4B1C-9366-F211E8953B08">
+          <dmn:text>150.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_5DF700D6-BD07-45BE-9D9A-63AFDEECEFD5">
+        <dmn:inputEntry id="_A5AD059C-15A0-40FB-8799-6B4D4DF67A51">
+          <dmn:text>"Lenevo"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_1BB37B0D-C65E-4B35-A348-4FF2E5858E57">
+          <dmn:text>"14 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_6C93F6BD-A7A9-4A8D-8310-8A9E12047F8A">
+          <dmn:text>150.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_A8961CE1-0FBD-4CD2-8ED0-8BD3A28FF81B">
+        <dmn:inputEntry id="_82EA2DE0-9228-4A4A-8664-9D6486B4010B">
+          <dmn:text>"Dell"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5672E288-25FA-4F50-90F8-025EE22A81C9">
+          <dmn:text>"15 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_223136CA-6B70-43FF-ABCA-ED4A625A537C">
+          <dmn:text>175.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_6BE9102B-163E-406F-8707-0049E71CEFB6">
+        <dmn:inputEntry id="_8DDBCBE4-884B-4CA6-85E4-8D7F1B29AA8D">
+          <dmn:text>"Lenevo"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_C4D0BDAE-7784-4F2A-82E2-481DFCBC3ABF">
+          <dmn:text>"15 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_CC47FE01-1467-41E5-AD18-5B502F943CD5">
+          <dmn:text>175.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7CCA272F-0369-4CA4-90AC-C30B2556FE30">
+        <dmn:inputEntry id="_F4AD6600-D164-4E62-AA70-71B40ACE28B2">
+          <dmn:text>"HP"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_38478799-3AFE-4355-BC0C-F86711FBDFFA">
+          <dmn:text>"15 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_9590619D-4B32-4BA3-8E9E-29D94714241C">
+          <dmn:text>175.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_683CC958-3E28-4186-AFF9-F3A196C497D0">
+        <dmn:inputEntry id="_AE639D44-D0C3-4ADF-9766-D6030BDF27B5">
+          <dmn:text>"Dell"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_BEF85C9D-B05B-4FFB-A062-4E2CD609B40A">
+          <dmn:text>"17 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_A3274D38-0BB4-4146-A256-9AB47D82585E">
+          <dmn:text>200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_05C6B273-52C7-4C4C-8603-D7256CFD0998">
+        <dmn:inputEntry id="_E0A7E30A-CAE2-4C08-A838-82BB5B3C1676">
+          <dmn:text>"HP"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_FC31107E-0CAB-4724-BCB8-D176AA634DEF">
+          <dmn:text>"17 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_68EA3A28-CB35-472B-A494-E20F23FF6A64">
+          <dmn:text>200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_643CDB56-994A-497F-9EDD-10E55A4ED39E">
+        <dmn:inputEntry id="_8A0604CA-88A7-4F39-A9F1-819EFE212D26">
+          <dmn:text>"Lenevo"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_D47430A1-4C51-44E6-B941-189B224070DB">
+          <dmn:text>"17 ' Inch"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_E652E5F2-04FE-4D31-B0EE-71ADB7A59263">
+          <dmn:text>200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_FB99CA94-362C-457B-8849-ABAB2D7013A3" name="type">
+    <dmn:extensionElements/>
+    <dmn:variable id="_8F4302EA-1459-431A-8156-D5C0F1683AF2" name="type" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:decision id="_24A9B48A-1587-4EEA-9B79-745632D11D76" name="OS Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_4552950D-DE49-4478-A2D0-3D2CD841ABA5" name="OS Price" typeRef="OSPrice"/>
+    <dmn:informationRequirement id="_49DBDE14-98DC-4B36-A091-85AEDFC7B3F2">
+      <dmn:requiredInput href="#_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_8385F146-8ABB-459A-BCF8-ECCC0445408A" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_81300760-79A4-4FA6-A34D-A2A14F39FFAA">
+        <dmn:inputExpression id="_FE0F69B5-5381-4CDD-8BC4-7D79563388D8" typeRef="string">
+          <dmn:text>computerRequest.operatingSystem</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_3CA1575E-4BD9-4D82-9ED0-DB37F6BC0750"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_32465027-5005-4BE8-9791-5827CC987282">
+        <dmn:inputEntry id="_55761ACF-69D7-4191-BC7A-C6A4C5AAE468">
+          <dmn:text>"Windows"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_F668C3F6-7333-4D4A-A248-5766BAF3F2FF">
+          <dmn:text>250.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_884D377A-9264-44F0-86F1-D03E8A0C9B07">
+        <dmn:inputEntry id="_4012F98F-D305-4E2C-8A4A-52E2D76DAFB4">
+          <dmn:text>"Mac OS"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_D9C57AB6-07B4-4EE5-A922-EE94934637A8">
+          <dmn:text>550.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_B78D82DA-0CFF-44E9-8E05-798D77963E78" name="Discount Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DAF18E7A-53E0-47CF-A117-8A2576DB4114" name="Discount Price" typeRef="number"/>
+    <dmn:informationRequirement id="_9BFFE2C8-D177-40BB-876B-E648EA9DB0CE">
+      <dmn:requiredInput href="#_FB99CA94-362C-457B-8849-ABAB2D7013A3"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_B884E317-EF80-402F-9A03-30969FCDCBE8" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_9B1FA2C6-4CBB-49AF-96E3-A4D12BA66D04">
+        <dmn:inputExpression id="_CECC4204-13E4-4DC8-8D39-01D65F19F5B5" typeRef="string">
+          <dmn:text>type</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_599561E5-BA20-4A14-A0E5-1EBD8730F8AB"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_A8C39243-666F-48DE-BCDF-330183F8A0F2">
+        <dmn:inputEntry id="_320E9CBF-FEAE-4D4E-ABBD-F70795E04726">
+          <dmn:text>"New"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_529FB38C-62AD-488F-AB0B-7C10D25F4849">
+          <dmn:text>0.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_3ED6CA3D-9616-47EB-BA4F-8FF252BC19A8">
+        <dmn:inputEntry id="_21C38B3D-3BDD-42B7-9A95-D7938CCD0B67">
+          <dmn:text>"Refurbished"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_92C7D0AB-0A70-41E7-8DD5-8B072E7F0843">
+          <dmn:text>-200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_603DAF5B-8CA1-428C-909C-BE433F9E33C1" name="CPU Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6594313E-A78A-4AB0-B505-665B8F19FF39" name="CPU Price" typeRef="CPUType"/>
+    <dmn:informationRequirement id="_989E4419-EF37-4CC7-AC02-AC80391947FA">
+      <dmn:requiredInput href="#_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_68838022-32CF-44FB-B8DC-AD05FDF27AC6" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_EAFACA58-FB34-4800-B7B7-AC66AD6DDB9F">
+        <dmn:inputExpression id="_B0617CFF-6751-41A2-BC82-24CCCC61635F" typeRef="string">
+          <dmn:text>computerRequest.cpu</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_88BD68C3-950F-481B-8AB2-BAFAEA8214EB" name="CPU" typeRef="string"/>
+      <dmn:output id="_209A45C7-B710-499F-9E3A-E180B20100A5" name="Price" typeRef="number"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_4383CAFF-57CC-4EAC-A6C0-1389EF6368DB">
+        <dmn:inputEntry id="_A7CCCB29-3F8C-4454-8C25-6F81CC7B33F2">
+          <dmn:text>"Intel 3rd Gen"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_09A70A06-DF82-412F-97C5-BF9D9CBF8AEE">
+          <dmn:text>"Intel 3rd Generation"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_9BB76B14-7F14-4A91-8223-A854D870CF68">
+          <dmn:text>150.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_325F3061-793D-4031-8319-83D331685FD1">
+        <dmn:inputEntry id="_67A56BE0-0D9D-4C3F-9F80-BEB7C3427BFD">
+          <dmn:text>"Intel 5th Gen"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_1B3E2D21-7C20-4522-BA06-0F90C974CD33">
+          <dmn:text>"Intel 5th Generation"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_B70931E0-1B88-461D-B694-EB631FAF6DE4">
+          <dmn:text>250.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_881B3F65-7CD3-4D70-94B4-8E21E3B1AE36">
+        <dmn:inputEntry id="_867BE176-D446-4A8F-A274-3F426A934646">
+          <dmn:text>"Intel 7th Gen" </dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_0368394F-66DB-4A45-B877-4EE2A30F1107">
+          <dmn:text>"Intel 7th Generation"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_A878F7A2-A2D6-4555-B33A-131BD6846550">
+          <dmn:text>350.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_A52D8D00-D6D3-407C-BE15-4DE3F520F913">
+        <dmn:inputEntry id="_F2AD77C5-76F5-4B36-BAB3-190B8D952484">
+          <dmn:text>"AMD Celeron"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_B64CD900-71DE-4965-BFBC-4ECDF19D3262">
+          <dmn:text>"AMD Processor Celeron"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:outputEntry id="_6ABE732E-E623-4ED1-9C11-380021EB6E4B">
+          <dmn:text>250.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1" name="computerRequest">
+    <dmn:extensionElements/>
+    <dmn:variable id="_38FD1EC8-F308-4FB6-B1BC-38A3F9764328" name="computerRequest" typeRef="ComputerRequest"/>
+  </dmn:inputData>
+  <dmn:decision id="_F41B293D-6833-4525-8724-863EC0954655" name="Total Base Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_92BCD681-0583-4FC0-A199-DB306FCC8C9F" name="Total Base Price" typeRef="number"/>
+    <dmn:informationRequirement id="_1574DD7A-7110-40EC-A52B-56A0F1E9505C">
+      <dmn:requiredDecision href="#_7FB2A1D5-3302-4208-B41F-5D5FD77E8B17"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_D6547451-65D3-41E0-ADBB-477BE79B9D89">
+      <dmn:requiredDecision href="#_24A9B48A-1587-4EEA-9B79-745632D11D76"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_0FE739A2-DE1B-4ADE-8CAF-AAF22DDD9E08">
+      <dmn:requiredDecision href="#_603DAF5B-8CA1-428C-909C-BE433F9E33C1"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_1152EA67-057B-401B-8120-EA7391DA9313">
+      <dmn:requiredDecision href="#_0466101F-8A09-46F7-8A29-259B3576B9AE"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_4A09BB06-A05E-4DDA-BDF6-3235F5A25AD0">
+      <dmn:requiredDecision href="#_40473A88-5D5C-4C56-8EED-93CAD67E70AF"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_12CF7D52-E448-4157-B765-F0914951EF49">
+      <dmn:text>CPU Price.Price + Hardware Price + OS Price + RAM Price + Screen Price</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:decision id="_40473A88-5D5C-4C56-8EED-93CAD67E70AF" name="RAM Price">
+    <dmn:extensionElements/>
+    <dmn:variable id="_7AAE339C-A129-4E50-98C8-EC97A4E67320" name="RAM Price" typeRef="RamPrice"/>
+    <dmn:informationRequirement id="_EA3DECC0-AF7F-4CE0-BE4E-D9710389E350">
+      <dmn:requiredInput href="#_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_5A66EDA8-7737-47F2-A579-44B83886CE08" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_2E619A25-1633-4289-9E00-FEFE231BCFB5">
+        <dmn:inputExpression id="_B01EF72C-EDD9-4433-9514-E67ACF8053D9" typeRef="string">
+          <dmn:text>computerRequest.ram</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_9AEA9727-EC62-44AE-AB29-8F30C68A4C6E"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_9FC37830-F823-45C5-AF63-96180CCCBE00">
+        <dmn:inputEntry id="_B7AAE1B2-CCC8-42F8-AEEE-C5FF0749B58B">
+          <dmn:text>"4 GB"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_613C9F7D-A097-4273-8577-AC645E2880BD">
+          <dmn:text>100.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_B6E40039-A084-4D69-9598-9256E6A4A39D">
+        <dmn:inputEntry id="_DEC300F4-551B-42AC-B3E7-A3E44D3C9C14">
+          <dmn:text>"8 GB"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_250EC5D0-F907-4E4A-B7A1-D443F1F000DD">
+          <dmn:text>200.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9CC466C1-3D81-4DDE-9B07-32861E86015C">
+        <dmn:inputEntry id="_D890544A-7D69-4155-9BA9-5A7C76B62B06">
+          <dmn:text>"16 GB"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_45757760-6DB5-4D7C-A4AB-8A94BAA27F48">
+          <dmn:text>400.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_F754D4A9-7FAF-40FA-BBA9-6E82DDEE972F">
+        <dmn:inputEntry id="_2A04C835-C531-419A-9C9B-6180C32B16E1">
+          <dmn:text>"32 GB"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_B836FC85-BA9D-43EB-9AAB-A9349EEA77DD">
+          <dmn:text>700.00</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text></dmn:text>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_10B93183-C0A2-42EA-9264-3F7F30258A24" name="FinalPrice">
+    <dmn:extensionElements/>
+    <dmn:variable id="_E0702F17-87FC-4892-A12D-C95047A7EC85" name="FinalPrice" typeRef="number"/>
+    <dmn:informationRequirement id="_273880CD-2610-40ED-925F-8BB14D803293">
+      <dmn:requiredDecision href="#_F41B293D-6833-4525-8724-863EC0954655"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_5CFDD662-94B2-45F6-9873-0FD11A067EA2">
+      <dmn:requiredDecision href="#_B78D82DA-0CFF-44E9-8E05-798D77963E78"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_E106E219-4F4A-4619-B604-5D6289B48D72">
+      <dmn:text>Total Base Price + Discount Price</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_E285B95A-FDD3-4A9B-A57B-0F723CED48D4">
+            <kie:width>50.0</kie:width>
+            <kie:width>231.0</kie:width>
+            <kie:width>245.0</kie:width>
+            <kie:width>212.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DE416A21-3712-481A-8185-A44C2FBDC0C8">
+            <kie:width>50.0</kie:width>
+            <kie:width>248.0</kie:width>
+            <kie:width>269.0</kie:width>
+            <kie:width>183.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8385F146-8ABB-459A-BCF8-ECCC0445408A">
+            <kie:width>50.0</kie:width>
+            <kie:width>165.0</kie:width>
+            <kie:width>202.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B884E317-EF80-402F-9A03-30969FCDCBE8">
+            <kie:width>50.0</kie:width>
+            <kie:width>189.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_68838022-32CF-44FB-B8DC-AD05FDF27AC6">
+            <kie:width>50.0</kie:width>
+            <kie:width>195.0</kie:width>
+            <kie:width>315.0</kie:width>
+            <kie:width>268.0</kie:width>
+            <kie:width>359.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_12CF7D52-E448-4157-B765-F0914951EF49">
+            <kie:width>626.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5A66EDA8-7737-47F2-A579-44B83886CE08">
+            <kie:width>50.0</kie:width>
+            <kie:width>276.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E106E219-4F4A-4619-B604-5D6289B48D72">
+            <kie:width>300.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_7FB2A1D5-3302-4208-B41F-5D5FD77E8B17" dmnElementRef="_7FB2A1D5-3302-4208-B41F-5D5FD77E8B17" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="324" y="292" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_0466101F-8A09-46F7-8A29-259B3576B9AE" dmnElementRef="_0466101F-8A09-46F7-8A29-259B3576B9AE" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="782" y="284" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_FB99CA94-362C-457B-8849-ABAB2D7013A3" dmnElementRef="_FB99CA94-362C-457B-8849-ABAB2D7013A3" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="178.59813084112147" y="207" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_24A9B48A-1587-4EEA-9B79-745632D11D76" dmnElementRef="_24A9B48A-1587-4EEA-9B79-745632D11D76" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="476" y="284" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_B78D82DA-0CFF-44E9-8E05-798D77963E78" dmnElementRef="_B78D82DA-0CFF-44E9-8E05-798D77963E78" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="179" y="131" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_603DAF5B-8CA1-428C-909C-BE433F9E33C1" dmnElementRef="_603DAF5B-8CA1-428C-909C-BE433F9E33C1" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="183" y="292" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1" dmnElementRef="_DAA488A1-7269-4CB7-B5C4-33A72C9DECB1" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="482.29906542056074" y="396" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_F41B293D-6833-4525-8724-863EC0954655" dmnElementRef="_F41B293D-6833-4525-8724-863EC0954655" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="481" y="154" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_40473A88-5D5C-4C56-8EED-93CAD67E70AF" dmnElementRef="_40473A88-5D5C-4C56-8EED-93CAD67E70AF" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="618" y="284" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_10B93183-C0A2-42EA-9264-3F7F30258A24" dmnElementRef="_10B93183-C0A2-42EA-9264-3F7F30258A24" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="481" y="32" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_804E6D62-B5E8-416D-B6F6-2266E61C0D03" dmnElementRef="_804E6D62-B5E8-416D-B6F6-2266E61C0D03">
+        <di:waypoint x="532.2990654205607" y="421"/>
+        <di:waypoint x="374" y="342"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_66470449-AC34-4E2E-BF52-449F79109D0D" dmnElementRef="_66470449-AC34-4E2E-BF52-449F79109D0D">
+        <di:waypoint x="532.2990654205607" y="421"/>
+        <di:waypoint x="832" y="334"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_49DBDE14-98DC-4B36-A091-85AEDFC7B3F2" dmnElementRef="_49DBDE14-98DC-4B36-A091-85AEDFC7B3F2">
+        <di:waypoint x="532.2990654205607" y="421"/>
+        <di:waypoint x="526" y="334"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_9BFFE2C8-D177-40BB-876B-E648EA9DB0CE" dmnElementRef="_9BFFE2C8-D177-40BB-876B-E648EA9DB0CE">
+        <di:waypoint x="228.59813084112147" y="232"/>
+        <di:waypoint x="229" y="181"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_989E4419-EF37-4CC7-AC02-AC80391947FA" dmnElementRef="_989E4419-EF37-4CC7-AC02-AC80391947FA">
+        <di:waypoint x="532.2990654205607" y="421"/>
+        <di:waypoint x="233" y="342"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_1574DD7A-7110-40EC-A52B-56A0F1E9505C" dmnElementRef="_1574DD7A-7110-40EC-A52B-56A0F1E9505C">
+        <di:waypoint x="374" y="317"/>
+        <di:waypoint x="531" y="204"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_D6547451-65D3-41E0-ADBB-477BE79B9D89" dmnElementRef="_D6547451-65D3-41E0-ADBB-477BE79B9D89">
+        <di:waypoint x="526" y="309"/>
+        <di:waypoint x="531" y="204"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_0FE739A2-DE1B-4ADE-8CAF-AAF22DDD9E08" dmnElementRef="_0FE739A2-DE1B-4ADE-8CAF-AAF22DDD9E08">
+        <di:waypoint x="233" y="317"/>
+        <di:waypoint x="531" y="204"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_1152EA67-057B-401B-8120-EA7391DA9313" dmnElementRef="_1152EA67-057B-401B-8120-EA7391DA9313">
+        <di:waypoint x="832" y="309"/>
+        <di:waypoint x="531" y="204"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_4A09BB06-A05E-4DDA-BDF6-3235F5A25AD0" dmnElementRef="_4A09BB06-A05E-4DDA-BDF6-3235F5A25AD0">
+        <di:waypoint x="668" y="309"/>
+        <di:waypoint x="531" y="204"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_EA3DECC0-AF7F-4CE0-BE4E-D9710389E350" dmnElementRef="_EA3DECC0-AF7F-4CE0-BE4E-D9710389E350">
+        <di:waypoint x="532.2990654205607" y="421"/>
+        <di:waypoint x="668" y="334"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_273880CD-2610-40ED-925F-8BB14D803293" dmnElementRef="_273880CD-2610-40ED-925F-8BB14D803293">
+        <di:waypoint x="531" y="179"/>
+        <di:waypoint x="531" y="82"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_5CFDD662-94B2-45F6-9873-0FD11A067EA2" dmnElementRef="_5CFDD662-94B2-45F6-9873-0FD11A067EA2">
+        <di:waypoint x="229" y="156"/>
+        <di:waypoint x="531" y="82"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

@@ -1,0 +1,233 @@
+package com.deluxedemo.deluxerules;
+
+import com.deluxedemo.deluxemodels.ComputerRequest;
+
+rule alwaysExecute
+ruleflow-group "calculatePrice"
+when
+     eval( true )
+then
+    System.out.println(" Always True : Rule Invoked");
+end    
+    
+    
+    
+    
+
+rule initPrice
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest()
+then
+    System.out.println(" calculatePrice : Rule Invoked");
+    $c.setPrice(0.0D);
+end    
+
+rule size1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "14 ' Inch",hardware != "Apple")
+then
+    $c.setPrice($c.getPrice() +  150.00);
+end   
+
+rule size2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "15 ' Inch",hardware != "Apple")
+then
+    $c.setPrice($c.getPrice() +  175.00);
+    
+end  
+
+rule size3
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "17 ' Inch",hardware != "Apple")
+then
+    $c.setPrice($c.getPrice() +  200.00);
+end  
+
+
+rule size4
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "14 ' Inch",hardware == "Apple")
+then
+   $c.setPrice($c.getPrice() +  200.00);
+end   
+
+rule size5
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "15 ' Inch",hardware == "Apple")
+then
+   $c.setPrice($c.getPrice() +  250.00);
+   System.out.println(" calculatePrice : Rule Invoked");
+    
+end  
+
+rule size6
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(screensize == "17 ' Inch",hardware == "Apple")
+then
+   $c.setPrice($c.getPrice() +  350.00);
+end  
+
+
+rule OS1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(operatingSystem == "Windows",hardware != "Apple")
+then
+   $c.setPrice($c.getPrice() +  250.00);
+    
+end  
+
+rule OS2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when 
+    $c : ComputerRequest(operatingSystem == "Mac OS",hardware == "Apple")
+then
+   $c.setPrice($c.getPrice() +  550.00);
+   System.out.println(" calculatePrice : Rule Invoked");
+end 
+
+rule hardware1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+$c : ComputerRequest(hardware == "Apple")
+then
+   $c.setPrice($c.getPrice() +  1000.00);
+end
+
+rule hardware2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+$c : ComputerRequest(hardware == "Lenevo")
+then
+   $c.setPrice($c.getPrice() +  350.00);
+end
+
+rule hardware3
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+$c : ComputerRequest(hardware == "Dell")
+then
+   $c.setPrice($c.getPrice() +  350.00);
+end
+
+rule hardware4
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+$c : ComputerRequest(hardware == "HP")
+then
+   $c.setPrice($c.getPrice() +  450.00);
+end
+
+rule cpusize1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(cpu == "Intel 3rd Gen")
+then
+   $c.setPrice($c.getPrice() +  150.00);
+end
+
+rule cpusize2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(cpu == "Intel 5th Gen")
+then
+   $c.setPrice($c.getPrice() +  250.00);
+end
+
+rule cpusize3
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(cpu == "Intel 7th Gen")
+then
+   $c.setPrice($c.getPrice() +  350.00);
+end
+
+rule cpusize4
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(cpu == "AMD Celeron")
+then
+   $c.setPrice($c.getPrice() +  250.00);
+end
+
+rule ramsize1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(ram == "4 GB")
+then
+   $c.setPrice($c.getPrice() +  100.00);
+end
+    
+rule ramsize2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(ram == "8 GB")
+then
+   $c.setPrice($c.getPrice() +  200.00);
+end
+
+
+rule ramsize3
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(ram == "16 GB")
+then
+   $c.setPrice($c.getPrice() +  400.00);
+end
+
+rule ramsize4
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(ram == "32 GB")
+then
+   $c.setPrice($c.getPrice() +  700.00);
+end
+
+rule condition1
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(type == "New")
+then
+   $c.setPrice($c.getPrice() +  0.00);
+end
+
+rule condition2
+dialect "mvel"
+ruleflow-group "calculatePrice"
+when
+ $c : ComputerRequest(type == "Refurbished")
+then
+   $c.setPrice($c.getPrice() -  200.00);
+end
+   
+    
