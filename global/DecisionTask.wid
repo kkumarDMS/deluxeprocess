@@ -14,7 +14,7 @@
 
             ],
             "mavenDependencies" : [
-                                 "org.jbpm:jbpm-workitems-bpmn2:7.39.0.Final-redhat-00005"
+                                 "org.jbpm:jbpm-workitems-bpmn2:7.67.0.Final-redhat-00008"
 
             ],
             "icon" : "DecisionTask.png"
