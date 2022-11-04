@@ -1,0 +1,30 @@
+{
+    "container-id" : "DeluxeProcess_1.0.0-SNAPSHOT",
+    "container-alias" : "DeluxeProcess",
+    "release-id" : {
+        "group-id" : "com.deluxedemo",
+        "artifact-id" : "DeluxeProcess",
+        "version" : "1.0.0-SNAPSHOT"
+    },
+    "config-items": [{
+        "itemName": "RuntimeStrategy",
+        "itemValue": "SINGLETON",
+        "itemType": "java.lang.String"
+      },
+      {
+        "itemName": "MergeMode",
+        "itemValue": "MERGE_COLLECTIONS",
+        "itemType": "java.lang.String"
+      },
+      {
+        "itemName": "KBase",
+        "itemValue": "",
+        "itemType": "java.lang.String"
+      },
+      {
+        "itemName": "KSession",
+        "itemValue": "",
+        "itemType": "java.lang.String"
+      }],
+      "status": "STARTED"
+}
